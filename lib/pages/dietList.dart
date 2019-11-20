@@ -58,9 +58,11 @@ class _DietListState extends State<DietList> {
 
   Future<Diet> getData() async {
     var queryParameters = {
-      'food_type': 'meal',
-      'current_calories': '100',
-      'max_calories': '2000'
+      'age': widget.age,
+      'weight': widget.height,
+      'height': widget.height,
+      'gender': widget.gender,
+      'goalType': widget.goalType
     };
 
     var uri = Uri.https(
