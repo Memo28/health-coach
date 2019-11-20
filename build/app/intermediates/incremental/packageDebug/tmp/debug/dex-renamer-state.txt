@@ -1,4 +1,4 @@
-#Tue Nov 19 01:05:34 CST 2019
-base.0=D\:\\Documentos\\Final\\health-coach\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Tue Nov 19 17:55:14 CST 2019
+base.0=C\:\\Users\\Dev-01\\Documents\\GitHub\\health-coach\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Documentos\\Final\\health-coach\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rCA\\values-en-rCA.xml",
+            "outputFile": "C:\\Users\\Dev-01\\Documents\\GitHub\\health-coach\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rCA\\values-en-rCA.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\MemoVDG\\.gradle\\caches\\transforms-2\\files-2.1\\9a23e2511cd7fc41ea41862e3811947c\\core-1.0.0\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "C:\\Users\\Dev-01\\.gradle\\caches\\transforms-2\\files-2.1\\9a23e2511cd7fc41ea41862e3811947c\\core-1.0.0\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Documentos\\Final\\health-coach\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
+            "outputFile": "C:\\Users\\Dev-01\\Documents\\GitHub\\health-coach\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\MemoVDG\\.gradle\\caches\\transforms-2\\files-2.1\\9a23e2511cd7fc41ea41862e3811947c\\core-1.0.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\Dev-01\\.gradle\\caches\\transforms-2\\files-2.1\\9a23e2511cd7fc41ea41862e3811947c\\core-1.0.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

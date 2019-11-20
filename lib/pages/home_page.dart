@@ -5,6 +5,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_login_demo/models/todo.dart';
 import 'dart:async';
 
+import 'dietList.dart';
+
+
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
       : super(key: key);
@@ -33,6 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   String _height;
   String _weight;
+  String _age;
 
   String _errorMessage;
   bool _isLoading;
@@ -137,12 +141,12 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 new Expanded(
                     child: new TextField(
-                  controller: _textEditingController,
-                  autofocus: true,
-                  decoration: new InputDecoration(
-                    labelText: 'Add new todo',
-                  ),
-                ))
+                      controller: _textEditingController,
+                      autofocus: true,
+                      decoration: new InputDecoration(
+                        labelText: 'Add new todo',
+                      ),
+                    ))
               ],
             ),
             actions: <Widget>[
@@ -186,10 +190,10 @@ class _HomePageState extends State<HomePage> {
                 trailing: IconButton(
                     icon: (completed)
                         ? Icon(
-                            Icons.done_outline,
-                            color: Colors.green,
-                            size: 20.0,
-                          )
+                      Icons.done_outline,
+                      color: Colors.green,
+                      size: 20.0,
+                    )
                         : Icon(Icons.done, color: Colors.grey, size: 20.0),
                     onPressed: () {
                       updateTodo(_todoList[index]);
@@ -200,16 +204,19 @@ class _HomePageState extends State<HomePage> {
     } else {
       return Center(
           child: Text(
-        "Welcome. Your list is empty",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 30.0),
-      ));
+            "Welcome. Your list is empty",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 30.0),
+          ));
     }
   }
 
   Widget getInformation() {
     return Container(
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height,
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [Color(0xFF55D735), Color(0xFF00AFF5)],
@@ -271,7 +278,8 @@ class _HomePageState extends State<HomePage> {
               Icons.accessibility,
               color: Colors.grey,
             )),
-        validator: (value) => value.isEmpty
+        validator: (value) =>
+        value.isEmpty
             ? 'Please provide a valid value can\'t be empty'
             : null,
         onSaved: (value) => _height = value.trim(),
@@ -292,10 +300,11 @@ class _HomePageState extends State<HomePage> {
               Icons.calendar_today,
               color: Colors.grey,
             )),
-        validator: (value) => value.isEmpty
+        validator: (value) =>
+        value.isEmpty
             ? 'Please provide a valid value can\'t be empty'
             : null,
-        onSaved: (value) => _height = value.trim(),
+        onSaved: (value) => _age = value.trim(),
       ),
     );
   }
@@ -313,7 +322,8 @@ class _HomePageState extends State<HomePage> {
               Icons.multiline_chart,
               color: Colors.grey,
             )),
-        validator: (value) => value.isEmpty
+        validator: (value) =>
+        value.isEmpty
             ? 'Please provide a valid value can\'t be empty'
             : null,
         onSaved: (value) => _weight = value,
@@ -387,7 +397,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.green,
                   child: new Text('Generate',
                       style:
-                          new TextStyle(fontSize: 20.0, color: Colors.white))),
+                      new TextStyle(fontSize: 20.0, color: Colors.white))),
             ))
       ],
     );
@@ -415,12 +425,15 @@ class _HomePageState extends State<HomePage> {
       _isLoading = true;
     });
 
-    if(validateAndSave()){
-      print(_weight);
-      print(_selectedGender);
-      print(_selectedGoal);
-    }else{
+    if (validateAndSave()) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DietList(age: _age, weight: _weight, height: _height, gender: _gender, goalType: _goals))
+      );
+    } else {
       print("Error");
     }
   }
+
+
 }

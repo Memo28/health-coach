@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Documentos\\Final\\health-coach\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ms\\values-ms.xml",
+            "outputFile": "C:\\Users\\Dev-01\\Documents\\GitHub\\health-coach\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ms\\values-ms.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\MemoVDG\\.gradle\\caches\\transforms-2\\files-2.1\\1b4551b9c00e49c831d06842d634a33a\\jetified-play-services-basement-16.2.0\\res\\values-ms\\values.xml",
+                    "source": "C:\\Users\\Dev-01\\.gradle\\caches\\transforms-2\\files-2.1\\6eed6a2f2c64b31c6dd59fba05132c6f\\jetified-play-services-basement-16.2.0\\res\\values-ms\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\MemoVDG\\.gradle\\caches\\transforms-2\\files-2.1\\9a23e2511cd7fc41ea41862e3811947c\\core-1.0.0\\res\\values-ms\\values-ms.xml",
+                    "source": "C:\\Users\\Dev-01\\.gradle\\caches\\transforms-2\\files-2.1\\9a23e2511cd7fc41ea41862e3811947c\\core-1.0.0\\res\\values-ms\\values-ms.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\MemoVDG\\.gradle\\caches\\transforms-2\\files-2.1\\dc5134b53a54d1d1ddb56a584b4a4813\\jetified-play-services-base-16.0.1\\res\\values-ms\\values.xml",
+                    "source": "C:\\Users\\Dev-01\\.gradle\\caches\\transforms-2\\files-2.1\\fb80d96277edfbec75b2838be4f3e7a9\\jetified-play-services-base-16.0.1\\res\\values-ms\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
