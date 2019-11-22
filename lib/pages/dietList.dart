@@ -24,7 +24,40 @@ class DietList extends StatefulWidget {
 
 class _DietListState extends State<DietList> {
 
-  Future<Diet> foods;
+
+  Future<List<Diet>> getData() async {
+    var queryParameters = {
+      'age': widget.age,
+      'weight': widget.weight,
+      'height': widget.height,
+      'gender': widget.gender,
+      'goalType' : widget.goalType  == 'Weight loss' ? 0 : 1
+    };
+
+    var uri = Uri.https(
+        'api-health-coach.herokuapp.com', '/generate', queryParameters);
+    print(uri);
+
+    var response = await http.post(
+        uri, headers: {
+      HttpHeaders.contentTypeHeader: 'application/json',
+    }
+
+
+    );
+    if(response.statusCode == 200){
+      print(response.body);
+      var jsonData = json.decode(response.body);
+
+      List<Diet> meals = [];
+      for(var u in jsonData){
+        Diet d = Diet
+      }
+
+    }else{
+      throw Exception('Failed to load');
+    }
+  }
 
 
   @override
@@ -53,32 +86,6 @@ class _DietListState extends State<DietList> {
 
       },
     );
-  }
-
-
-  Future<Diet> getData() async {
-    var queryParameters = {
-      'food_type': 'meal',
-      'current_calories': '100',
-      'max_calories': '2000'
-    };
-
-    var uri = Uri.https(
-        'api-health-coach.herokuapp.com', '/generate', queryParameters);
-
-    print(uri);
-
-    var response = await http.post(
-        uri, headers: {
-      HttpHeaders.contentTypeHeader: 'application/json',
-    }
-    );
-    if(response.statusCode == 200){
-      print(response.body);
-      return Diet.fromJson(json.decode(response.body));
-    }else{
-      throw Exception('Failed to load');
-    }
   }
 
 }
