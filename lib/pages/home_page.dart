@@ -211,29 +211,32 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  Widget showLogo() {
+    return new Hero(
+      tag: 'hero',
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
+        child: CircleAvatar(
+          backgroundColor: Colors.transparent,
+          radius: 48.0,
+          child: Image.asset('assets/images/logo.png'),
+        ),
+      ),
+    );
+  }
+
   Widget getInformation() {
     return Container(
-        height: MediaQuery
-            .of(context)
-            .size
-            .height,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0xFF55D735), Color(0xFF00AFF5)],
-                begin: FractionalOffset(0.6, 0.6),
-                end: FractionalOffset(0.5, 0.3),
-                stops: [0.0, 0.6],
-                tileMode: TileMode.clamp)),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
+              showLogo(),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
                   "Pleas provide the next information",
                   style: TextStyle(
-                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                   ),
@@ -244,7 +247,6 @@ class _HomePageState extends State<HomePage> {
               showWeight(),
               showGender(),
               Divider(
-                color: Colors.white,
                 thickness: 3.0,
               ),
               Padding(
@@ -252,7 +254,6 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   "What is your goal",
                   style: TextStyle(
-                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                   ),
@@ -428,7 +429,7 @@ class _HomePageState extends State<HomePage> {
     if (validateAndSave()) {
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DietList(age: _age, weight: _weight, height: _height, gender: _gender, goalType: _goals))
+          MaterialPageRoute(builder: (context) => DietList(age: _age, weight: _weight, height: _height, gender: _selectedGender, goalType: _selectedGoal == 'Weight loss' ? 0 : 1))
       );
     } else {
       print("Error");

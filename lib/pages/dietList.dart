@@ -24,7 +24,9 @@ class DietList extends StatefulWidget {
 
 class _DietListState extends State<DietList> {
   Future<List<Meal>> _getData() async {
-    var queryParameters = {
+    final _authority = 'api-health-coach.herokuapp.com';
+    final _path = '/generate';
+    final _params = {
       'age': widget.age,
       'weight': widget.weight,
       'height': widget.height,
@@ -32,9 +34,17 @@ class _DietListState extends State<DietList> {
       'goalType': widget.goalType == 'Weight loss' ? 0 : 1
     };
 
-    var uri = Uri.https(
-        'api-health-coach.herokuapp.com', '/generate', queryParameters);
+    var uri = Uri.parse('https://api-health-coach.herokuapp.com/generate');
+    uri = uri.replace(
+        query:
+            'age=${widget.age}&weight=${widget.weight}&height=${widget.height}&gender=${widget.gender}&goalType=${widget.goalType}');
     print(uri);
+
+    print('Goooo..');
+//    var uri = Uri.https(path : _authority, queryParameters : _params);
+    print('Goooo..');
+
+    print(uri.toString());
 
     var response = await http.post(uri, headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
@@ -58,25 +68,68 @@ class _DietListState extends State<DietList> {
 
   @override
   Widget build(BuildContext context) {
-    // Use the Todo to create the UI.
+    Widget showLogo() {
+      return new Hero(
+        tag: 'hero',
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 48.0,
+            child: Image.asset('assets/images/logo.png'),
+          ),
+        ),
+      );
+    }
+
+    Widget showPrimaryButton() {
+      return new Padding(
+          padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+          child: SizedBox(
+            height: 40.0,
+            child: new RaisedButton(
+              elevation: 5.0,
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0)),
+              child: new Text('Unlock Premium',
+                  style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+            ),
+          ));
+    }
+
     return new Scaffold(
-        appBar: new AppBar(title: Text('Diet pla')),
+        appBar: new AppBar(title: Text('Diet plan')),
         body: Container(
           child: FutureBuilder(
             future: _getData(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if(snapshot.data == null){
+              if (snapshot.data == null) {
                 return Container(
                   child: Center(
                     child: Text('Loading...'),
                   ),
                 );
-              }else {
-                return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(title: Text(snapshot.data[index].title));
-                  },
+              } else {
+                return Column(
+                  children: <Widget>[
+                    showLogo(),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(2.0,20.0,2.0,0.0),
+                      child: Text('Get your FULL meal plan unlocking premium', textAlign : TextAlign.center, style: new TextStyle(fontSize: 20.0)),
+                    ),
+                    showPrimaryButton(),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                              title: Text(snapshot.data[index].title),
+                              subtitle : Text(snapshot.data[index].desc)
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 );
               }
             },
