@@ -1,6 +1,6 @@
 
 ## Healthy Coach
-by @Memo28, @danismithu, @ateyodin
+by @Memo28, @danismithu and @ateyodin
 
 Normally if you want to know how healthy is the food you are eating daily you have to manually keep track of this task just to mantain a perfectly balanced lifestyle, the team came up with this amazing idea to reduce this as much as possible applying image detection. This App is going to help you identify if you are having a healthy meal or not, as simple as that.
 
