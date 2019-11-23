@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
+import '../services/flutter_paypal.dart';
+import 'package:flutter/services.dart';
+import 'dart:async';
 
 class DietList extends StatefulWidget {
   final age;
@@ -23,27 +26,49 @@ class DietList extends StatefulWidget {
 }
 
 class _DietListState extends State<DietList> {
-  Future<List<Meal>> _getData() async {
-    final _authority = 'api-health-coach.herokuapp.com';
-    final _path = '/generate';
-    final _params = {
-      'age': widget.age,
-      'weight': widget.weight,
-      'height': widget.height,
-      'gender': widget.gender,
-      'goalType': widget.goalType == 'Weight loss' ? 0 : 1
-    };
+  String _platformVersion = 'Unknown';
 
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+    //
+    FlutterPaypal.register(
+      sandbox:
+      "AR1XeeAf34xHEDv0lZskpH7vFyP-guZbzqw-wvbgpID9zi6ycNtVeaLAWGEC6W54FJtuhbqamcDKjfpc",
+      production:
+      "AS_cHzhWtzdQE1GFPjix2c_l8Ga7Jp_8BDhc0g5IsO8qvWobZkT_RXdtEmenZpN0PrXOwR0oJE5oSYh7",
+    );
+  }
+
+
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initPlatformState() async {
+    String platformVersion;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      platformVersion = await FlutterPaypal.platformVersion;
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _platformVersion = platformVersion;
+    });
+  }
+
+
+  Future<List<Meal>> _getData() async {
     var uri = Uri.parse('https://api-health-coach.herokuapp.com/generate');
     uri = uri.replace(
         query:
             'age=${widget.age}&weight=${widget.weight}&height=${widget.height}&gender=${widget.gender}&goalType=${widget.goalType}');
-    print(uri);
-
-    print('Goooo..');
-//    var uri = Uri.https(path : _authority, queryParameters : _params);
-    print('Goooo..');
-
     print(uri.toString());
 
     var response = await http.post(uri, headers: {
@@ -88,6 +113,11 @@ class _DietListState extends State<DietList> {
           child: SizedBox(
             height: 40.0,
             child: new RaisedButton(
+              onPressed:(){
+                FlutterPaypal.payment("100", "Health Coach Subscription").then((data){
+                  print(data);
+                });
+              },
               elevation: 5.0,
               shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(30.0)),

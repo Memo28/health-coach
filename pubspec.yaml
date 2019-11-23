@@ -16,6 +16,9 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  plugin:
+    androidPackage: com.xzkj.flutter_paypal
+    pluginClass: FlutterPaypalPlugin
 
   assets:
     - assets/flutter-icon.png
